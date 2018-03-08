@@ -1,0 +1,82 @@
+package ash.gz.model;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import java.util.Objects;
+
+@Entity
+public class Fund
+{
+  @Id
+  @GeneratedValue
+  private long id;
+
+  private String name;
+
+  private boolean support;
+
+  @ManyToOne
+  @JoinColumn(name = "submission_id")
+  private Submission submission;
+
+  public long getId()
+  {
+    return id;
+  }
+
+  public void setId(long id)
+  {
+    this.id = id;
+  }
+
+  public String getName()
+  {
+    return name;
+  }
+
+  public void setName(String name)
+  {
+    this.name = name;
+  }
+
+  public boolean isSupport()
+  {
+    return support;
+  }
+
+  public void setSupport(boolean support)
+  {
+    this.support = support;
+  }
+
+  public Submission getSubmission()
+  {
+    return submission;
+  }
+
+  public void setSubmission(Submission submission)
+  {
+    this.submission = submission;
+  }
+
+  @Override
+  public boolean equals(Object o)
+  {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Fund fund = (Fund) o;
+    return id == fund.id &&
+        support == fund.support &&
+        Objects.equals(name, fund.name) &&
+        Objects.equals(submission, fund.submission);
+  }
+
+  @Override
+  public int hashCode()
+  {
+    return Objects.hash(id, name, support, submission);
+  }
+}
