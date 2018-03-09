@@ -3,7 +3,6 @@ package ash.gz.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.util.Objects;
 
@@ -19,7 +18,6 @@ public class Fund
   private boolean support;
 
   @ManyToOne
-  @JoinColumn(name = "submission_id")
   private Submission submission;
 
   public long getId()

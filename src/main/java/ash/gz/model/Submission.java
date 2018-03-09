@@ -1,8 +1,11 @@
 package ash.gz.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import java.util.ArrayList;
@@ -12,7 +15,7 @@ import java.util.List;
 public class Submission
 {
   @Id
-  @GeneratedValue
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
 
   @Email
@@ -24,7 +27,11 @@ public class Submission
 
   private boolean supportsEnvironment;
 
-  @OneToMany(mappedBy = "submission")
+  @OneToMany(
+      cascade = CascadeType.ALL,
+      orphanRemoval = true
+  )
+  @JoinColumn(name = "submission_id")
   private List<Fund> funds = new ArrayList<>();
 
   public long getId()
