@@ -21,6 +21,18 @@ public class Fund
   @ManyToOne
   private Submission submission;
 
+  public Fund()
+  {
+
+  }
+
+  public Fund(String name, boolean support, Submission submission)
+  {
+    this.name = name;
+    this.support = support;
+    this.submission = submission;
+  }
+
   public long getId()
   {
     return id;

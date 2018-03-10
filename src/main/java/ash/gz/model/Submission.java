@@ -34,6 +34,20 @@ public class Submission
   @JoinColumn(name = "submission_id")
   private List<Fund> funds = new ArrayList<>();
 
+  public Submission()
+  {
+
+  }
+
+  public Submission(@Email String email, boolean supportsTransport, boolean supportsHousing, boolean supportsEnvironment, List<Fund> funds)
+  {
+    this.email = email;
+    this.supportsTransport = supportsTransport;
+    this.supportsHousing = supportsHousing;
+    this.supportsEnvironment = supportsEnvironment;
+    this.funds = funds;
+  }
+
   public long getId()
   {
     return id;
