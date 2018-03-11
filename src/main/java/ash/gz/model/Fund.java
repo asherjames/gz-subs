@@ -5,14 +5,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 public class Fund
 {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
+  @GeneratedValue
+  private UUID id;
 
   private String name;
 
@@ -33,12 +35,12 @@ public class Fund
     this.submission = submission;
   }
 
-  public long getId()
+  public UUID getId()
   {
     return id;
   }
 
-  public void setId(long id)
+  public void setId(UUID id)
   {
     this.id = id;
   }

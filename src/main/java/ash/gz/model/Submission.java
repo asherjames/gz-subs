@@ -1,5 +1,7 @@
 package ash.gz.model;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,13 +12,14 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 public class Submission
 {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
+  @GeneratedValue
+  private UUID id;
 
   @Email
   private String email;
@@ -48,12 +51,12 @@ public class Submission
     this.funds = funds;
   }
 
-  public long getId()
+  public UUID getId()
   {
     return id;
   }
 
-  public void setId(long id)
+  public void setId(UUID id)
   {
     this.id = id;
   }

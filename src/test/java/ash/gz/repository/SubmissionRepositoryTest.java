@@ -14,6 +14,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -37,9 +38,10 @@ public class SubmissionRepositoryTest
     submission.setEmail(testEmail);
     submission.setSupportsEnvironment(true);
 
-    entityManager.persistAndFlush(submission);
+    UUID id = entityManager.persistAndGetId(submission, UUID.class);
+    entityManager.flush();
 
-    Optional<Submission> optional = submissionRepository.findById(1L);
+    Optional<Submission> optional = submissionRepository.findById(id);
 
     Submission found = null;
 
@@ -52,7 +54,7 @@ public class SubmissionRepositoryTest
     }
 
     assertThat(found).isNotNull();
-    assertThat(found.getId()).isEqualTo(1L);
+    assertThat(found.getId()).isEqualTo(id);
     assertThat(found.getEmail()).isEqualTo(testEmail);
     assertThat(found.isSupportsEnvironment()).isTrue();
   }
@@ -68,9 +70,10 @@ public class SubmissionRepositoryTest
         new Fund("Fund_C", true, submission)
     ).collect(Collectors.toList()));
 
-    entityManager.persistAndFlush(submission);
+    UUID id = entityManager.persistAndGetId(submission, UUID.class);
+    entityManager.flush();
 
-    Optional<Submission> optional = submissionRepository.findById(1L);
+    Optional<Submission> optional = submissionRepository.findById(id);
 
     Submission found = null;
 
@@ -83,7 +86,7 @@ public class SubmissionRepositoryTest
     }
 
     assertThat(found).isNotNull();
-    assertThat(found.getId()).isEqualTo(1L);
+    assertThat(found.getId()).isEqualTo(id);
     assertThat(found.getFunds())
         .hasSize(3)
         .extracting(Fund::getName)
