@@ -49,7 +49,7 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter
         .authorizeRequests()
         .mvcMatchers(HttpMethod.GET, "/test").hasRole(USER_ROLE)
         .mvcMatchers(HttpMethod.POST, "/submissions").hasRole(USER_ROLE)
-        .mvcMatchers(HttpMethod.GET, "/submissions/**").hasRole(USER_ROLE)
+        .mvcMatchers(HttpMethod.GET, "/submissions/*").hasRole(USER_ROLE)
         .anyRequest().hasRole(ADMIN_ROLE)
         .and().httpBasic()
         .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
