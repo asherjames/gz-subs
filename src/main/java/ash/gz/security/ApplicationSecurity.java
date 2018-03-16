@@ -1,16 +1,22 @@
 package ash.gz.security;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
+import java.util.Collections;
 
-@Configuration
+@EnableWebSecurity
 public class ApplicationSecurity extends WebSecurityConfigurerAdapter
 {
   @Value("${user.username}")
@@ -45,7 +51,8 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter
   @Override
   protected void configure(HttpSecurity http) throws Exception
   {
-    http.csrf().disable()
+    http.cors().and()
+        .csrf().disable()
         .authorizeRequests()
         .mvcMatchers(HttpMethod.GET, "/test").hasRole(USER_ROLE)
         .mvcMatchers(HttpMethod.POST, "/submissions").hasRole(USER_ROLE)
@@ -57,5 +64,18 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter
     http.exceptionHandling()
         .authenticationEntryPoint(
             (httpServletRequest, httpServletResponse, e) -> httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED));
+  }
+
+  @Bean
+  CorsConfigurationSource corsConfigurationSource()
+  {
+    final CorsConfiguration configuration = new CorsConfiguration();
+    configuration.setAllowedOrigins(Collections.unmodifiableList(Arrays.asList("*")));
+    configuration.setAllowedMethods(Collections.unmodifiableList(Arrays.asList("GET","POST")));
+    configuration.setAllowCredentials(true);
+    configuration.setAllowedHeaders(Collections.unmodifiableList(Arrays.asList("Authorization", "Cache-Control", "Content-Type")));
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/**", configuration);
+    return source;
   }
 }

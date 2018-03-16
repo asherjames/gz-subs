@@ -2,11 +2,12 @@ package ash.gz;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapter;
 import org.springframework.stereotype.Component;
 
-@Component
+@Configuration
 class CustomRestMvcConfig extends RepositoryRestConfigurerAdapter
 {
   @Override

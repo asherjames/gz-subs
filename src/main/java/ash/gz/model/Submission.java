@@ -48,6 +48,16 @@ public class Submission
   @JoinColumn(name = "submission_id")
   private List<Checkbox> checkboxes = new ArrayList<>();
 
+  private String extraTransportProjectsSupport;
+
+  private String extraTransportProjectsDoNotSupport;
+
+  private String extraEnvironmentalProjects;
+
+  private String extraHousingProjects;
+
+  private String otherComments;
+
   public UUID getId()
   {
     return id;
@@ -188,5 +198,55 @@ public class Submission
   {
     checkboxes.remove(checkbox);
     checkbox.setSubmission(null);
+  }
+
+  public String getExtraTransportProjectsSupport()
+  {
+    return extraTransportProjectsSupport;
+  }
+
+  public void setExtraTransportProjectsSupport(String extraTransportProjectsSupport)
+  {
+    this.extraTransportProjectsSupport = extraTransportProjectsSupport;
+  }
+
+  public String getExtraTransportProjectsDoNotSupport()
+  {
+    return extraTransportProjectsDoNotSupport;
+  }
+
+  public void setExtraTransportProjectsDoNotSupport(String extraTransportProjectsDoNotSupport)
+  {
+    this.extraTransportProjectsDoNotSupport = extraTransportProjectsDoNotSupport;
+  }
+
+  public String getExtraEnvironmentalProjects()
+  {
+    return extraEnvironmentalProjects;
+  }
+
+  public void setExtraEnvironmentalProjects(String extraEnvironmentalProjects)
+  {
+    this.extraEnvironmentalProjects = extraEnvironmentalProjects;
+  }
+
+  public String getExtraHousingProjects()
+  {
+    return extraHousingProjects;
+  }
+
+  public void setExtraHousingProjects(String extraHousingProjects)
+  {
+    this.extraHousingProjects = extraHousingProjects;
+  }
+
+  public String getOtherComments()
+  {
+    return otherComments;
+  }
+
+  public void setOtherComments(String otherComments)
+  {
+    this.otherComments = otherComments;
   }
 }
