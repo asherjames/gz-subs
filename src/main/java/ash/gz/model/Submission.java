@@ -21,32 +21,32 @@ public class Submission
   @Email
   private String email;
 
-  private boolean supportsTransport;
+  private String firstName;
 
-  private boolean supportsHousing;
+  private String lastName;
 
-  private boolean supportsEnvironment;
+  private String localBoard;
+
+  private boolean receiveGZEmail;
+
+  private boolean fossilFuelTax;
+
+  private boolean waterInfrastructureTax;
+
+  private boolean environmentTargetedRate;
+
+  private boolean transportCheck;
+
+  private boolean housingCheck;
+
+  private boolean environmentCheck;
 
   @OneToMany(
       cascade = CascadeType.ALL,
       orphanRemoval = true
   )
   @JoinColumn(name = "submission_id")
-  private List<Fund> funds = new ArrayList<>();
-
-  public Submission()
-  {
-
-  }
-
-  public Submission(@Email String email, boolean supportsTransport, boolean supportsHousing, boolean supportsEnvironment, List<Fund> funds)
-  {
-    this.email = email;
-    this.supportsTransport = supportsTransport;
-    this.supportsHousing = supportsHousing;
-    this.supportsEnvironment = supportsEnvironment;
-    this.funds = funds;
-  }
+  private List<Checkbox> checkboxes = new ArrayList<>();
 
   public UUID getId()
   {
@@ -68,55 +68,125 @@ public class Submission
     this.email = email;
   }
 
-  public boolean isSupportsTransport()
+  public String getFirstName()
   {
-    return supportsTransport;
+    return firstName;
   }
 
-  public void setSupportsTransport(boolean supportsTransport)
+  public void setFirstName(String firstName)
   {
-    this.supportsTransport = supportsTransport;
+    this.firstName = firstName;
   }
 
-  public boolean isSupportsHousing()
+  public String getLastName()
   {
-    return supportsHousing;
+    return lastName;
   }
 
-  public void setSupportsHousing(boolean supportsHousing)
+  public void setLastName(String lastName)
   {
-    this.supportsHousing = supportsHousing;
+    this.lastName = lastName;
   }
 
-  public boolean isSupportsEnvironment()
+  public String getLocalBoard()
   {
-    return supportsEnvironment;
+    return localBoard;
   }
 
-  public void setSupportsEnvironment(boolean supportsEnvironment)
+  public void setLocalBoard(String localBoard)
   {
-    this.supportsEnvironment = supportsEnvironment;
+    this.localBoard = localBoard;
   }
 
-  public List<Fund> getFunds()
+  public boolean isReceiveGZEmail()
   {
-    return funds;
+    return receiveGZEmail;
   }
 
-  public void setFunds(List<Fund> funds)
+  public void setReceiveGZEmail(boolean receiveGZEmail)
   {
-    this.funds = funds;
+    this.receiveGZEmail = receiveGZEmail;
   }
 
-  public void addFund(Fund fund)
+  public boolean isFossilFuelTax()
   {
-    funds.add(fund);
-    fund.setSubmission(this);
+    return fossilFuelTax;
   }
 
-  public void removeFund(Fund fund)
+  public void setFossilFuelTax(boolean fossilFuelTax)
   {
-    funds.remove(fund);
-    fund.setSubmission(null);
+    this.fossilFuelTax = fossilFuelTax;
+  }
+
+  public boolean isWaterInfrastructureTax()
+  {
+    return waterInfrastructureTax;
+  }
+
+  public void setWaterInfrastructureTax(boolean waterInfrastructureTax)
+  {
+    this.waterInfrastructureTax = waterInfrastructureTax;
+  }
+
+  public boolean isEnvironmentTargetedRate()
+  {
+    return environmentTargetedRate;
+  }
+
+  public void setEnvironmentTargetedRate(boolean environmentTargetedRate)
+  {
+    this.environmentTargetedRate = environmentTargetedRate;
+  }
+
+  public boolean isTransportCheck()
+  {
+    return transportCheck;
+  }
+
+  public void setTransportCheck(boolean transportCheck)
+  {
+    this.transportCheck = transportCheck;
+  }
+
+  public boolean isHousingCheck()
+  {
+    return housingCheck;
+  }
+
+  public void setHousingCheck(boolean housingCheck)
+  {
+    this.housingCheck = housingCheck;
+  }
+
+  public boolean isEnvironmentCheck()
+  {
+    return environmentCheck;
+  }
+
+  public void setEnvironmentCheck(boolean environmentCheck)
+  {
+    this.environmentCheck = environmentCheck;
+  }
+
+  public List<Checkbox> getCheckboxes()
+  {
+    return checkboxes;
+  }
+
+  public void setCheckboxes(List<Checkbox> checkboxes)
+  {
+    this.checkboxes = checkboxes;
+  }
+
+  public void addCheckbox(Checkbox checkbox)
+  {
+    checkboxes.add(checkbox);
+    checkbox.setSubmission(this);
+  }
+
+  public void removeCheckbox(Checkbox checkbox)
+  {
+    checkboxes.remove(checkbox);
+    checkbox.setSubmission(null);
   }
 }

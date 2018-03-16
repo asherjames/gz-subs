@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Entity
-public class Fund
+public class Checkbox
 {
   @Id
   @GeneratedValue
@@ -16,24 +16,15 @@ public class Fund
 
   private String name;
 
-  private boolean support;
+  private boolean checked;
+
+  private String type;
 
   @ManyToOne
   private Submission submission;
 
-  public Fund()
-  {
-
-  }
-
-  public Fund(String name, boolean support, Submission submission)
-  {
-    this.name = name;
-    this.support = support;
-    this.submission = submission;
-  }
-
   public UUID getId()
+
   {
     return id;
   }
@@ -53,14 +44,24 @@ public class Fund
     this.name = name;
   }
 
-  public boolean isSupport()
+  public boolean isChecked()
   {
-    return support;
+    return checked;
   }
 
-  public void setSupport(boolean support)
+  public void setChecked(boolean checked)
   {
-    this.support = support;
+    this.checked = checked;
+  }
+
+  public String getType()
+  {
+    return type;
+  }
+
+  public void setType(String type)
+  {
+    this.type = type;
   }
 
   public Submission getSubmission()
@@ -78,16 +79,18 @@ public class Fund
   {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
-    Fund fund = (Fund) o;
-    return id == fund.id &&
-        support == fund.support &&
-        Objects.equals(name, fund.name) &&
-        Objects.equals(submission, fund.submission);
+    Checkbox checkbox = (Checkbox) o;
+    return checked == checkbox.checked &&
+        Objects.equals(id, checkbox.id) &&
+        Objects.equals(name, checkbox.name) &&
+        Objects.equals(type, checkbox.type) &&
+        Objects.equals(submission, checkbox.submission);
   }
 
   @Override
   public int hashCode()
   {
-    return Objects.hash(id, name, support, submission);
+
+    return Objects.hash(id, name, checked, type, submission);
   }
 }
