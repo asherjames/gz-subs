@@ -20,6 +20,18 @@ public class Checkbox
 
   private String type;
 
+  public Checkbox()
+  {
+  }
+
+  public Checkbox(String name, boolean checked, String type, Submission submission)
+  {
+    this.name = name;
+    this.checked = checked;
+    this.type = type;
+    this.submission = submission;
+  }
+
   @ManyToOne
   private Submission submission;
 
