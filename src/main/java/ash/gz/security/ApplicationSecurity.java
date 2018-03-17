@@ -54,6 +54,7 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter
     http.cors().and()
         .csrf().disable()
         .authorizeRequests()
+        .mvcMatchers(HttpMethod.GET, "/count").anonymous()
         .mvcMatchers(HttpMethod.GET, "/test").hasRole(USER_ROLE)
         .mvcMatchers(HttpMethod.POST, "/submissions").hasRole(USER_ROLE)
         .mvcMatchers(HttpMethod.GET, "/submissions/*").hasRole(USER_ROLE)
