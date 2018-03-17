@@ -58,6 +58,7 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter
         .mvcMatchers(HttpMethod.GET, "/test").hasRole(USER_ROLE)
         .mvcMatchers(HttpMethod.POST, "/submissions").hasRole(USER_ROLE)
         .mvcMatchers(HttpMethod.GET, "/submissions/*").hasRole(USER_ROLE)
+        .mvcMatchers(HttpMethod.GET, "/export").hasRole(ADMIN_ROLE)
         .anyRequest().hasRole(ADMIN_ROLE)
         .and().httpBasic()
         .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
