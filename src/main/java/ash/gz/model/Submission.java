@@ -1,14 +1,9 @@
 package ash.gz.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -41,12 +36,29 @@ public class Submission
 
   private boolean environmentCheck;
 
-  @OneToMany(
-      cascade = CascadeType.ALL,
-      orphanRemoval = true
-  )
-  @JoinColumn(name = "submission_id")
-  private List<Checkbox> checkboxes = new ArrayList<>();
+  private boolean lightRail;
+
+  private boolean busway;
+
+  private boolean frequentRail;
+
+  private boolean cycleNetwork;
+
+  private boolean frequentBus;
+
+  private boolean safeStreets;
+
+  private boolean safetyUpgrades;
+
+  private boolean communityFunding;
+
+  private boolean publicSpaces;
+
+  private boolean lincolnRoad;
+
+  private boolean millRoad;
+
+  private boolean maoriWards;
 
   private String extraTransportProjectsSupport;
 
@@ -178,26 +190,124 @@ public class Submission
     this.environmentCheck = environmentCheck;
   }
 
-  public List<Checkbox> getCheckboxes()
+  public boolean isLightRail()
   {
-    return checkboxes;
+    return lightRail;
   }
 
-  public void setCheckboxes(List<Checkbox> checkboxes)
+  public void setLightRail(boolean lightRail)
   {
-    this.checkboxes = checkboxes;
+    this.lightRail = lightRail;
   }
 
-  public void addCheckbox(Checkbox checkbox)
+  public boolean isBusway()
   {
-    checkboxes.add(checkbox);
-    checkbox.setSubmission(this);
+    return busway;
   }
 
-  public void removeCheckbox(Checkbox checkbox)
+  public void setBusway(boolean busway)
   {
-    checkboxes.remove(checkbox);
-    checkbox.setSubmission(null);
+    this.busway = busway;
+  }
+
+  public boolean isFrequentRail()
+  {
+    return frequentRail;
+  }
+
+  public void setFrequentRail(boolean frequentRail)
+  {
+    this.frequentRail = frequentRail;
+  }
+
+  public boolean isCycleNetwork()
+  {
+    return cycleNetwork;
+  }
+
+  public void setCycleNetwork(boolean cycleNetwork)
+  {
+    this.cycleNetwork = cycleNetwork;
+  }
+
+  public boolean isFrequentBus()
+  {
+    return frequentBus;
+  }
+
+  public void setFrequentBus(boolean frequentBus)
+  {
+    this.frequentBus = frequentBus;
+  }
+
+  public boolean isSafeStreets()
+  {
+    return safeStreets;
+  }
+
+  public void setSafeStreets(boolean safeStreets)
+  {
+    this.safeStreets = safeStreets;
+  }
+
+  public boolean isSafetyUpgrades()
+  {
+    return safetyUpgrades;
+  }
+
+  public void setSafetyUpgrades(boolean safetyUpgrades)
+  {
+    this.safetyUpgrades = safetyUpgrades;
+  }
+
+  public boolean isCommunityFunding()
+  {
+    return communityFunding;
+  }
+
+  public void setCommunityFunding(boolean communityFunding)
+  {
+    this.communityFunding = communityFunding;
+  }
+
+  public boolean isPublicSpaces()
+  {
+    return publicSpaces;
+  }
+
+  public void setPublicSpaces(boolean publicSpaces)
+  {
+    this.publicSpaces = publicSpaces;
+  }
+
+  public boolean isLincolnRoad()
+  {
+    return lincolnRoad;
+  }
+
+  public void setLincolnRoad(boolean lincolnRoad)
+  {
+    this.lincolnRoad = lincolnRoad;
+  }
+
+  public boolean isMillRoad()
+  {
+    return millRoad;
+  }
+
+  public void setMillRoad(boolean millRoad)
+  {
+    this.millRoad = millRoad;
+  }
+
+  public boolean isMaoriWards()
+  {
+    return maoriWards;
+  }
+
+  public void setMaoriWards(boolean maoriWards)
+  {
+    this.maoriWards = maoriWards;
   }
 
   public String getExtraTransportProjectsSupport()
